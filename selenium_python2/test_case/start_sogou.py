@@ -4,13 +4,16 @@ Created on 2017-6-14
 @author: 灵枢
 Project:搜狗搜索测试用例
 '''
+
 from selenium import webdriver
-import unittest, time
+import unittest
+import time
+
 
 class SogouTest(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(30) #隐性等待时间为30秒
+        self.driver.implicitly_wait(30)  # 隐性等待时间为30秒
         self.base_url = "http://www.sogou.com"
 
     def test_sogou(self):
@@ -26,6 +29,7 @@ class SogouTest(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+
 
 if __name__ == "__main__":
     unittest.main()

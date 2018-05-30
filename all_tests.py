@@ -6,24 +6,28 @@ Project:通过测试套件执行多个测试用例，并生成报告
 '''
 import HTMLTestRunner
 import unittest
-import os,time
+import os
+import time
 
 
 listaa = "E:\\selenium_python2\\test_case"
+
+
 def createsuite1():
-    testunit=unittest.TestSuite()
-    discover=unittest.defaultTestLoader.discover(listaa,pattern='start_*.py',top_level_dir=None)
+    testunit = unittest.TestSuite()
+    discover = unittest.defaultTestLoader.discover(
+        listaa, pattern='start_*.py', top_level_dir=None)
     for test_suite in discover:
         for test_case in test_suite:
             testunit.addTests(test_case)
             print(testunit)
     return testunit
 
-now = time.strftime("%Y-%m-%d %H_%M_%S",time.localtime())
-filename="E:\\selenium_python2\\report\\"+now+"_result.html"
-fp=open(filename,'wb')
+now = time.strftime("%Y-%m-%d %H_%M_%S", time.localtime())
+filename = "E:\\selenium_python2\\report\\" + now + "_result.html"
+fp = open(filename, 'wb')
 
-runner=HTMLTestRunner.HTMLTestRunner(
+runner = HTMLTestRunner.HTMLTestRunner(
     stream=fp,
     title=u'搜索功能测试报告',
     description=u'用例执行情况：')
