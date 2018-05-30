@@ -10,22 +10,23 @@ import os
 import time
 
 
-listaa = "E:\\selenium_python2\\test_case"
-
-
 def createsuite1():
+    tc_path = os.path.join('selenium_python2', 'test_case')
     testunit = unittest.TestSuite()
     discover = unittest.defaultTestLoader.discover(
-        listaa, pattern='start_*.py', top_level_dir=None)
+        tc_path, pattern='start_*.py', top_level_dir=None)
     for test_suite in discover:
         for test_case in test_suite:
-            testunit.addTests(test_case)
+            testunit.addTest(test_case)
             print(testunit)
     return testunit
 
 now = time.strftime("%Y-%m-%d %H_%M_%S", time.localtime())
-filename = "E:\\selenium_python2\\report\\" + now + "_result.html"
-fp = open(filename, 'wb')
+out_path = os.path.join('selenium_python2', 'report')
+if not os.path.exists(out_path):
+    os.makedirs(out_path)
+fn = os.path.join(out_path, now + "_result.html")
+fp = open(fn, 'wb')
 
 runner = HTMLTestRunner.HTMLTestRunner(
     stream=fp,
