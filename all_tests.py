@@ -21,19 +21,21 @@ def createsuite1():
             print(testunit)
     return testunit
 
-now = time.strftime("%Y-%m-%d %H_%M_%S", time.localtime())
-out_path = os.path.join('selenium_python2', 'report')
-if not os.path.exists(out_path):
-    os.makedirs(out_path)
-fn = os.path.join(out_path, now + "_result.html")
-fp = open(fn, 'wb')
 
-runner = HTMLTestRunner.HTMLTestRunner(
-    stream=fp,
-    title=u'搜索功能测试报告',
-    description=u'用例执行情况：')
+if __name__ == '__main__':
+    now = time.strftime("%Y-%m-%d %H_%M_%S", time.localtime())
+    out_path = os.path.join('selenium_python2', 'report')
+    if not os.path.exists(out_path):
+        os.makedirs(out_path)
+    fn = os.path.join(out_path, now + "_result.html")
+    fp = open(fn, 'wb')
 
-runner.run(createsuite1())
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=fp,
+        title=u'搜索功能测试报告',
+        description=u'用例执行情况：')
 
-#关闭文件流，不关的话生成的报告是空的
-fp.close()
+    runner.run(createsuite1())
+
+    #关闭文件流，不关的话生成的报告是空的
+    fp.close()
